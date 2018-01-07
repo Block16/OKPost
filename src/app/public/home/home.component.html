@@ -1,8 +1,8 @@
 <div>Say something:</div>
 <form name="broadcast-form" [formGroup]="broadCastForm">
   <div class="input">
-    <input formControlName="message" name="message" id="message" type="text" autofocus>
     <label for="message">Message</label>
+    <input formControlName="message" name="message" id="message" type="text" autofocus>
   </div>
   <div>
     <label for="gas-price">Gas Price (gwei):</label>
@@ -24,7 +24,8 @@
            id="gas-limit"
            [(ngModel)]="gasLimit"
            min="35000"
-           max="1000000">
+           max="1000000"
+           step="5000">
     {{ gasLimit }}
   </div>
   <button class="button primary wide">Publish with Trezor</button>

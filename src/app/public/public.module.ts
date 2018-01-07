@@ -7,6 +7,9 @@ import {RouterModule} from "@angular/router";
 import {NavbarComponent} from "./navbar/navbar.component";
 import { LayoutComponent } from './layout/layout.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { AboutComponent } from './about/about.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -20,7 +23,10 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [
     HomeComponent,
     NavbarComponent,
-    LayoutComponent
+    LayoutComponent,
+    AboutComponent,
+    UserViewComponent,
+    NotFoundComponent
   ]
 })
 export class PublicModule { }

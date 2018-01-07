@@ -93,7 +93,7 @@ export class Web3Service {
     // Callback heaven!
     this.logsTimer = setInterval(() => {
       if(this.shouldFetch) {
-        // Could die if there's an error here.
+        // Could die holding lock if there's an error here.
         this.shouldFetch = false;
         this.web3.eth.getBlock("latest").then((result) => {
           let from = this.startBlock;
