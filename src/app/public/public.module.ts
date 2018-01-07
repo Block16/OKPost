@@ -6,10 +6,12 @@ import {PublicRoutingModule} from "./public.routing";
 import {RouterModule} from "@angular/router";
 import {NavbarComponent} from "./navbar/navbar.component";
 import { LayoutComponent } from './layout/layout.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     PublicRoutingModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule,
 

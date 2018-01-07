@@ -1,3 +1,36 @@
+<div>Say something:</div>
+<form name="broadcast-form" [formGroup]="broadCastForm">
+  <div class="input">
+    <input formControlName="message" name="message" id="message" type="text" autofocus>
+    <label for="message">Message</label>
+  </div>
+  <div>
+    <label for="gas-price">Gas Price (gwei):</label>
+    <!-- This kind of spacing reminds me of the Android XML layouts -->
+    <input type="range"
+           formControlName="gasPrice"
+           name="gas-price"
+           id="gas-price"
+           [(ngModel)]="gasPrice"
+           min="1"
+           max="80">
+    {{ gasPrice }}
+  </div>
+  <div>
+    <label for="gas-limit">Gas Limit:</label>
+    <input type="range"
+           formControlName="gasLimit"
+           name="gas-limit"
+           id="gas-limit"
+           [(ngModel)]="gasLimit"
+           min="35000"
+           max="1000000">
+    {{ gasLimit }}
+  </div>
+  <button class="button primary wide">Publish with Trezor</button>
+  <button class="button primary wide">Publish with MetaMask</button>
+</form>
+
 <ul>
   <li *ngFor="let l of logs">Identity: {{ l.topics[1] }}, Data: {{ l.data }}</li>
 </ul>
