@@ -22,9 +22,9 @@ contract EnduringPublication is Ownable {
       for(uint256 j = 0; j < 32; j++)            // Validate anscii
       {
         uint8 c = uint8(_text[i][j]);            // Convert to uint8
-        require(32 <= c);                        // Greater than space
-        require(c <= 122);                       // Less than z
-      }
+        require(32 <= c || c == 0);                        // Greater than equal to space
+        require(c <= 122 || c == 0);                       // Less than equal to z
+      }                                          // Ever wonder if { } after z was deliberate?
       PublishData(msg.sender, _text[i], i);
     }
   }
