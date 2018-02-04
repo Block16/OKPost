@@ -45,6 +45,8 @@ export class Web3Service {
       console.info("Attempting to use local provider.");
     }
 
+    this.provider = new Web3.providers.HttpProvider("http://localhost:8545");
+
     this.web3 = new Web3(this.provider);
 
     this.web3.eth.net.getId().then((id) => {

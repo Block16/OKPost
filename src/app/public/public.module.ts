@@ -11,7 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AvatarComponent } from './avatar/avatar.component';
-import { PostComponent } from './post/post.component';
+import { PostComponent } from './single-post-view/post.component';
 import { PostButtonComponent } from './post-button/post-button.component';
 
 @NgModule({

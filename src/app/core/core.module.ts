@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Web3Service} from "./web3.service";
 import {HttpClientModule} from "@angular/common/http";
-import {UiService} from "./ui.service";
+import {DatashareService} from "./datashare.service";
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import {UiService} from "./ui.service";
   ],
   providers: [
     Web3Service,
-    UiService
+    DatashareService
   ],
   declarations: []
 })
