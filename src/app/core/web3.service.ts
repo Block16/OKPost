@@ -27,7 +27,10 @@ export class Web3Service {
   private shouldFetch: boolean = true;
 
   private logs: Log[] = [];
+
   public logSubject: BehaviorSubject<Log[]>;
+  public loggedIn: BehaviorSubject<boolean>;
+  public account: BehaviorSubject<string>;
 
   constructor(
     private httpClient: HttpClient
@@ -35,6 +38,8 @@ export class Web3Service {
     this.infura = environment.production ? "https://mainnet.infura.io/mMVAl9ZCBbtZ4sc0fBbO" : "https://kovan.infura.io/mMVAl9ZCBbtZ4sc0fBbO";
 
     this.logSubject = new BehaviorSubject(this.logs);
+    this.loggedIn = new BehaviorSubject(false);
+    this.account = new BehaviorSubject("");
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof web3 !== 'undefined') {
@@ -54,13 +59,28 @@ export class Web3Service {
       this.trufflePublishContract.setProvider(this.provider);
       this.trufflePublishContract.setNetwork(id);
       this.publishContract = new this.web3.eth.Contract(this.trufflePublishContract.abi, this.trufflePublishContract.address);
-      // Start listening for updates from the probider
+
+      this.web3.eth.getAccounts().then((accounts) => {
+        if(!isNullOrUndefined(accounts) && !isNullOrUndefined(accounts[0])) {
+          this.account.next(accounts[0]);
+          this.loggedIn.next(true);
+        } else {
+          this.loggedIn.next(false);
+        }
+      });
+
+      // Start listening for updates from the provider
       this.listenForUpdates();
     });
   }
 
   public getWeb3(): any {
     return this.web3;
+  }
+
+  public sendMessage(message: string) {
+    let newMessage: string = this.web3.utils.utf8ToHex(message);
+    newMessage = newMessage.substr(2, newMessage.length);
   }
 
   private constructRawRpc(method: string, params: any): any {

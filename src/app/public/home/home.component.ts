@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit {
   public gasLimit: number = 35000;
   public postText;
 
+  public loggedIn: boolean = false;
+  public account: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private web3Service: Web3Service,
@@ -53,6 +56,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.web3Service.loggedIn.subscribe((loggedIn) => {
+      this.loggedIn = loggedIn;
+    });
+
+    this.web3Service.account.subscribe((account) => {
+      this.account = account;
+    });
+
     // Listen to the blockchain
     this.web3Service.logSubject.subscribe((logs: Log[]) => {
       this.logs = logs;
