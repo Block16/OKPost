@@ -10,19 +10,7 @@ export class DatashareService {
     this.sidebarOpen = new BehaviorSubject(false);
   }
 
-  public toggleSidebar() {
-    this.sidebarOpen.next(!this.sidebarOpen.getValue());
-  }
-
-  public openSidebar() {
-    if(!this.sidebarOpen.getValue()) {
-      this.sidebarOpen.next(true);
-    }
-  }
-
-  public closeSidebar() {
-    if(this.sidebarOpen.getValue()) {
-      this.sidebarOpen.next(false);
-    }
+  public setShowMenu(bool) {
+    this.sidebarOpen.next(bool);
   }
 }
