@@ -1,0 +1,9 @@
+@import '../../../assets/scss-imports/_mixins.scss';
+@import '../../../assets/scss-imports/_variables.scss';
+
+.avatar {
+	height: $avatarSize;
+	width: $avatarSize;
+	border-radius: 99em;
+	border: 2px solid gray;
+}

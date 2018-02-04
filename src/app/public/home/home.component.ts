@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Web3Service} from "../../core/web3.service";
+import {UiService} from "../../core/ui.service";
 import { ChangeDetectorRef } from '@angular/core';
 import {Log} from "web3/types";
 import {Post} from "../../shared/models/post";
@@ -26,14 +27,16 @@ export class HomeComponent implements OnInit {
   public gasLimitControl: AbstractControl;
   public gasPrice: number = 30;
   public gasLimit: number = 35000;
+  public postText;
 
   constructor(
     private formBuilder: FormBuilder,
     private web3Service: Web3Service,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private ui: UiService
   ) {
     this.web3 = this.web3Service.getWeb3();
-
+    
     this.broadCastForm = this.formBuilder.group({
       'message':   ['', [ Validators.required, Validators.pattern('^[\\ -z]+$')] ],
       'gasPrice': ['', [ Validators.required, Validators.min(1), Validators.max(80)] ],

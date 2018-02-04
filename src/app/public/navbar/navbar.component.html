@@ -1,3 +1,6 @@
-<div>
-  Navbar
+<div class="menu-button"
+		 (click)="showMenu = !showMenu">=</div>
+<div class="menu"
+		 [ngClass]="{ 'show': showMenu }">
+	hello, this is the menu.
 </div>

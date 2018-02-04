@@ -1,0 +1,53 @@
+@import '../../../assets/scss-imports/_mixins.scss';
+@import '../../../assets/scss-imports/_variables.scss';
+
+.user-post {
+	$innerPadding: .5em;
+	position: sticky;
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	margin: 0 auto;
+	min-height: $navHeight;
+	max-width: $timelineMaxWidth;
+	border: 1px solid black;
+	border-width: 0 1px 0 1px;
+	.left, .right {
+		display: flex;
+		flex: 0 0 5.75em;
+		padding: $innerPadding;
+		background: hsla(0,0,0,.15);
+	}
+	.left {
+		justify-content: flex-end;
+	}
+	.right {
+		justify-content: flex-start;
+	}
+	.middle {
+		flex: 1;
+		.middle-content {
+			padding: $innerPadding 0 0 0;
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			display: flex;
+			flex-flow: column;
+			align-items: stretch;
+		}
+		.display-name {
+			flex: 0 1 auto;
+		}
+		.post-input {
+			flex: 1;
+			box-sizing: border-box;
+		}
+	}
+}
+
+.timeline {
+	max-width: $timelineMaxWidth;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-width: 0 1px 0 1px;
+}

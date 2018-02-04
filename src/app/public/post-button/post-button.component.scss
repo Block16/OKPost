@@ -1,0 +1,38 @@
+@import '../../../assets/scss-imports/_mixins.scss';
+@import '../../../assets/scss-imports/_variables.scss';
+
+.post-button {
+	position: relative;
+	z-index: 2;
+	height: $avatarSize;
+	width: $avatarSize;
+	box-sizing: border-box;
+	@include flex-center;
+	@include button;
+	&.default {
+		
+	}
+	&.active {
+		
+	}
+	&.confirm {
+		color: white;
+	}
+	&.working {
+		
+	}
+}
+
+.overlay {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	@include pass-through;
+	&.show {
+		background: hsla(0,0,0,.85);
+		@include no-pass-through;
+	}
+}

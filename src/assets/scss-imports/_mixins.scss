@@ -1,0 +1,22 @@
+@mixin button {
+	cursor: pointer;
+	user-select: none;
+}
+
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin pass-through {
+	user-select: none;
+	-webkit-user-select: none;
+	pointer-events: none;
+}
+
+@mixin no-pass-through {
+	user-select: auto;
+	-webkit-user-select: auto;
+	pointer-events: auto;
+}

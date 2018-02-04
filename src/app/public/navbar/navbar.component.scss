@@ -1,0 +1,35 @@
+@import '../../../assets/scss-imports/_mixins.scss';
+@import '../../../assets/scss-imports/_variables.scss';
+
+:host {
+	
+}
+
+.menu-button {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	background: hsla(0,0,50%,.5);
+	height: $navHeight;
+	width: $navHeight;
+	@include flex-center;
+	@include button;
+}
+
+.menu {
+	$menuWidth: 20em;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	left: -$menuWidth;
+	width: $menuWidth;
+	background: black;
+	color: white;
+	transition: .1s;
+	padding: $navHeight 0 0 0;
+	&.show {
+		left: 0;
+	}
+}
