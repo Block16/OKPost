@@ -33,7 +33,11 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private web3Service: Web3Service,
     private changeDetectorRef: ChangeDetectorRef,
+<<<<<<< 74a705b6b8543af54e18f2a7f5942513912cd988
     private datashareService: DatashareService
+=======
+    private uiService: UiService
+>>>>>>> ui service
   ) {
     this.web3 = this.web3Service.getWeb3();
 
@@ -46,6 +50,10 @@ export class HomeComponent implements OnInit {
     this.messageControl = this.broadCastForm.controls['message'];
     this.gasPriceControl = this.broadCastForm.controls['gasPrice'];
     this.gasLimitControl = this.broadCastForm.controls['gasLimit'];
+  }
+  
+  setOpenMenu(bool) {
+    this.uiService.setShowMenu(bool);
   }
 
   ngOnInit() {
