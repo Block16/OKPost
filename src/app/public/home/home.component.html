@@ -40,11 +40,9 @@
     <app-avatar></app-avatar>
   </div>
   <div class="middle">
-    <div *ngIf="false"
-         >Log in to post</div>
-    <div *ngIf="true"
-         class="middle-content">
-      <div class="display-name">0xvse5ybd6fn57by5d465ufyjnbyserdtguiokp</div>
+    <div *ngIf="!loggedIn">Log in to post</div>
+    <div *ngIf="loggedIn" class="middle-content">
+      <div class="display-name">{{ account }}</div>
       <textarea class="post-input"></textarea>
     </div>
   </div>
