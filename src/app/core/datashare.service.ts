@@ -5,18 +5,24 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 export class DatashareService {
 
   public sidebarOpen: BehaviorSubject<boolean>;
-  public topbarOpen: BehaviorSubject<boolean>;
 
   constructor() {
     this.sidebarOpen = new BehaviorSubject(false);
-    this.topbarOpen = new BehaviorSubject(false);
   }
 
   public toggleSidebar() {
     this.sidebarOpen.next(!this.sidebarOpen.getValue());
   }
 
-  public toggleTopbar() {
-    this.topbarOpen.next(!this.topbarOpen.getValue());
+  public openSidebar() {
+    if(!this.sidebarOpen.getValue()) {
+      this.sidebarOpen.next(true);
+    }
+  }
+
+  public closeSidebar() {
+    if(this.sidebarOpen.getValue()) {
+      this.sidebarOpen.next(false);
+    }
   }
 }
