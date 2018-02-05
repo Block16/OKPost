@@ -3,14 +3,15 @@ import {Web3Service} from "../../core/web3.service";
 import { ChangeDetectorRef } from '@angular/core';
 import {Log} from "web3/types";
 import {Post} from "../../shared/models/post";
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, FormsModule, Validators} from "@angular/forms";
+import {Subscription} from "rxjs/Subscription";
 import {DatashareService} from "../../core/datashare.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: [
-    './home.component.scss'
+    './home.component.scss', '../single-post-view/post.component.scss'
   ]
 })
 export class HomeComponent implements OnInit {
@@ -19,7 +20,17 @@ export class HomeComponent implements OnInit {
 
   public logs: Log[] = [];
   public posts: Post[] = [];
-
+  
+  // UI
+  private showOverlay = false;
+  private showGasSettings = false;
+  public postMode = {
+    default: true, // textarea contains nothing
+    active: false, // textarea contains text (default for now)
+    confirm: false, // button clicked once
+    working: false, // posting…
+  };
+  
   // Broadcast form
   public broadCastForm: FormGroup;
   public messageControl: AbstractControl;
@@ -31,12 +42,14 @@ export class HomeComponent implements OnInit {
 
   public loggedIn: boolean = false;
   public account: string;
+  
+  private overlaySubscription: Subscription;
 
-  constructor(
+  constructor (
     private formBuilder: FormBuilder,
     private web3Service: Web3Service,
     private changeDetectorRef: ChangeDetectorRef,
-    private datashareService: DatashareService
+    private dataShareService: DatashareService
   ) {
     this.web3 = this.web3Service.getWeb3();
 
@@ -45,16 +58,43 @@ export class HomeComponent implements OnInit {
       'gasPrice': ['', [ Validators.required, Validators.min(1), Validators.max(80)] ],
       'gasLimit': ['', [ Validators.required, Validators.min(35000)] ],
     });
-
+    
+    this.overlaySubscription = this.dataShareService.showOverlay.subscribe((value: boolean) => {
+      this.showOverlay = value;
+    });
+      
     this.messageControl = this.broadCastForm.controls['message'];
     this.gasPriceControl = this.broadCastForm.controls['gasPrice'];
     this.gasLimitControl = this.broadCastForm.controls['gasLimit'];
   }
   
-  setOpenMenu(bool) {
-    this.datashareService.setShowMenu(bool);
+  clickPost() {
+      // placeholder for advanced button behavior
+      if (this.postMode.active) {
+        this.setPostMode('confirm');
+      } else if (this.postMode.confirm) {
+        this.setPostMode('active');
+      }
   }
-
+  
+  postTextChange(value) {
+    console.log(value);
+    if (value.length == 0) {
+      this.setPostMode('default');
+    } else if (value.length > 0 && !this.postMode.confirm) {
+      this.setPostMode('active');
+    }
+  }
+  
+  setOpenMenu(bool) {
+    this.dataShareService.setShowMenu(bool);
+  }
+  
+  setPostMode(desiredMode: string): void {
+    for (const name of Object.keys(this.postMode)) {
+      (name !== desiredMode) ? this.postMode[name] = false : this.postMode[name] = true;
+    }
+  }
   ngOnInit() {
     this.web3Service.loggedIn.subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
@@ -76,10 +116,6 @@ export class HomeComponent implements OnInit {
 
       this.changeDetectorRef.detectChanges();
     });
-  }
-
-  public toggleSidebar() {
-    this.datashareService.toggleSidebar();
   }
 
   private getText(data: string): string {

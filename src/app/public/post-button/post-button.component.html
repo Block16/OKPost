@@ -1,12 +1,6 @@
 <div class="post-button"
-		 (click)="clickPost()"
-		 [ngClass]="{ 'default': mode.default,
-		 							'active': mode.active,
-			 						'confirm': mode.confirm,
-				 					'working': mode.working }">post</div>
+		 [ngClass]="{ 'default': postMode.default,
+		 							'active': postMode.active,
+			 						'confirm': postMode.confirm,
+				 					'working': postMode.working }">post</div>
 				 					
-<div class="overlay"
-		 [ngClass]="{ 'show': mode.confirm }">
-		 	<div *ngIf="mode.confirm"
-		 			 (click)="setMode('active')">X</div>
-		 </div>

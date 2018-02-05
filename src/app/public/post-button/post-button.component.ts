@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
+import {DatashareService} from "../../core/datashare.service";
 
 @Component({
   selector: 'app-post-button',
@@ -7,28 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostButtonComponent implements OnInit {
 	
-	public mode = {
-	  default: false, // textarea contains nothing
-	  active: true, // textarea contains text
-	  confirm: false, // button clicked once
-	  working: false, // posting…
-	};
-  constructor() { }
+  @Input('postMode') postMode;
   
-  clickPost() {
-    
-    // placeholder for advanced button behavior
-  	if (this.mode.active) {
-  		// this.setMode('confirm');
-  	} else if (this.mode.confirm) {
-      // this.setMode('active');
-    }
-  }
+  constructor(private datashareService: DatashareService) { }
   
-  setMode(desiredMode: string): void {
-    for (const name of Object.keys(this.mode)) {
-      (name !== desiredMode) ? this.mode[name] = false : this.mode[name] = true;
-    }
+  setShowOverlay(bool) {
+    this.datashareService.setShowOverlay(bool);
   }
   
   ngOnInit() {

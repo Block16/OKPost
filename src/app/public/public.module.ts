@@ -6,7 +6,7 @@ import {PublicRoutingModule} from "./public.routing";
 import {RouterModule} from "@angular/router";
 import {NavbarComponent} from "./navbar/navbar.component";
 import { LayoutComponent } from './layout/layout.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AboutComponent } from './about/about.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -16,6 +16,7 @@ import { PostButtonComponent } from './post-button/post-button.component';
 
 @NgModule({
   imports: [
+    FormsModule,
     PublicRoutingModule,
     ReactiveFormsModule,
     CommonModule,
@@ -31,7 +32,7 @@ import { PostButtonComponent } from './post-button/post-button.component';
     NotFoundComponent,
     AvatarComponent,
     PostComponent,
-    PostButtonComponent
+    PostButtonComponent,
   ],
   exports: [
     NavbarComponent,

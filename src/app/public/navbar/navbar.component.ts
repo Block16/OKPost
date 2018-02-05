@@ -12,9 +12,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public showMenu: boolean;
   private menuSubscription: Subscription;
 
-  constructor(
-    private dataShareService: DatashareService,
-  ) {
+  constructor( private dataShareService: DatashareService ) {
     this.menuSubscription = this.dataShareService.sidebarOpen.subscribe((value: boolean) => {
       this.showMenu = value;
     });

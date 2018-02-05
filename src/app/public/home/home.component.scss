@@ -4,50 +4,61 @@
 .user-post {
 	$innerPadding: .5em;
 	position: sticky;
-	display: flex;
-	justify-content: space-between;
-	align-items: stretch;
-	margin: 0 auto;
-	min-height: $navHeight;
+	z-index: $userPostZ;
 	max-width: $timelineMaxWidth;
-	border: 1px solid black;
-	border-width: 0 1px 0 1px;
-	.left, .right {
+	&.confirm {
+		z-index: 3;
+		color: white;
+	}
+	.user-post-top {
 		display: flex;
-		flex: 0 0 5.75em;
-		padding: $innerPadding;
-		background: hsla(0,0,0,.15);
+		justify-content: space-between;
+		align-items: stretch;
+		min-height: $navHeight;
 	}
-	.left {
-		justify-content: flex-end;
-	}
-	.right {
-		justify-content: flex-start;
-	}
-	.middle {
-		flex: 1;
-		.middle-content {
-			padding: $innerPadding 0 0 0;
-			width: 100%;
-			height: 100%;
-			box-sizing: border-box;
-			display: flex;
-			flex-flow: column;
-			align-items: stretch;
-		}
-		.display-name {
-			flex: 0 1 auto;
-		}
-		.post-input {
-			flex: 1;
-			box-sizing: border-box;
-		}
+	.confirmation-post-mock {
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
 	}
 }
 
 .timeline {
 	max-width: $timelineMaxWidth;
 	margin: 0 auto;
-	border: 1px solid black;
-	border-width: 0 1px 0 1px;
+	background: hsla(0,0,0,.1);
+}
+
+.overlay {
+	display: none;
+	position: fixed;
+	z-index: $overlayZ;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: white;
+	-webkit-overflow-scrolling: touch;
+	@include pass-through;
+	&.show {
+		display: block;
+		background: hsla(0,0,0,.85);
+		@include no-pass-through;
+	}
+	
+	.timeline {
+		background: hsla(0,0,100,.4);
+	}
+}
+
+.post-confirmation {
+	.confirmation-top {
+		display: flex;
+	}
+	.confirmation-gas-settings {
+		
+	}
+	.confirmation-post-mock {
+		display: flex;
+	}
 }

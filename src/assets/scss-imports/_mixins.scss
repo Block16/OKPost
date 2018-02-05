@@ -20,3 +20,10 @@
 	-webkit-user-select: auto;
 	pointer-events: auto;
 }
+
+@mixin tblr($amount: 0em) {
+	top: $amount;
+	bottom: $amount;
+	left: $amount;
+	right: $amount;
+}

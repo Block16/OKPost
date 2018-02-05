@@ -1,0 +1,34 @@
+@import '../../../assets/scss-imports/_mixins.scss';
+@import '../../../assets/scss-imports/_variables.scss';
+
+.post-left, .post-right {
+	display: flex;
+	flex: 0 0 5.75em;
+	// padding: $innerPadding;
+	background: hsla(0,0,0,.15);
+}
+.post-left {
+	justify-content: flex-end;
+}
+.post-right {
+	justify-content: flex-start;
+}
+.post-middle {
+	flex: 1;
+	.middle-content {
+		// padding: $innerPadding 0 0 0;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		display: flex;
+		flex-flow: column;
+		align-items: stretch;
+	}
+	.display-name {
+		flex: 0 1 auto;
+	}
+	.post-input {
+		flex: 1;
+		box-sizing: border-box;
+	}
+}

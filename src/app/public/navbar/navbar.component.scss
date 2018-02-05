@@ -27,7 +27,7 @@
 	width: $menuWidth;
 	background: black;
 	color: white;
-	transition: .1s;
+	transition: .05s;
 	padding: $navHeight 0 0 0;
 	&.show {
 		left: 0;
